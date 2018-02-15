@@ -71,7 +71,6 @@ let getPolution = function(city, state, country) {
 
 $(document).ready(function() {
   console.log(apiKey);
-  // let url = `http://api.airvisual.com/v2/city?city=${city}&state=${state}&country=${country}&key=7LRyPFW5Ei3JYTJin`;
 
   let countries = [];
   let states;
@@ -90,7 +89,7 @@ $(document).ready(function() {
       countries = response.data;
       for(let i=0; i < countries.length; i++) {
         $('#countries').append(`
-          <option value="${countries[i].country}">${countries[i].country}</option>
+          <option class="ctest" value="${countries[i].country}">${countries[i].country}</option>
           `);
       }
     },
@@ -99,6 +98,20 @@ $(document).ready(function() {
     }
   });
 
+  $("#queryAirData").change(function(){
+    country = $("#countries").val();
+    state = $('#states').val();
+    city = $('#cities').val();
+    if(city != null) {
+      getPolution(city, state, country);
+    } else if(state != null) {
+      getCities(state, country);
+    } else if(country != null) {
+      getState(country);
+    } else {
+      console.log("Reached Else");
+    }
+  });
 
   $('#queryAirData').submit(function(event){
     // alert("submit event!");
