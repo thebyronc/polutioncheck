@@ -1,4 +1,5 @@
 import { apiKey } from './../.env';
+import { Air } from './../js/air.js';
 
 let getState = function(country) {
   $.ajax({
@@ -10,9 +11,16 @@ let getState = function(country) {
     success: function(response) {
       let states = response.data;
       for(let i=0; i < states.length; i++) {
-        $('#states').append(`
-          <option value="${states[i].state}">${states[i].state}</option>
-          `);
+        if(states[i].state == "Oregon") {
+          $('#states').append(`
+            <option value="${states[i].state}" selected>${states[i].state}</option>
+            `);
+        } else {
+          $('#states').append(`
+            <option value="${states[i].state}">${states[i].state}</option>
+            `);
+        }
+
       }
       return states;
     },
@@ -33,9 +41,16 @@ let getCities = function(state, country) {
     success: function(response) {
       let cities = response.data;
       for(let i=0; i < cities.length; i++) {
-        $('#cities').append(`
-          <option value="${cities[i].city}">${cities[i].city}</option>
-          `);
+        if(cities[i].city == "Portland") {
+          $('#cities').append(`
+            <option value="${cities[i].city}" selected>${cities[i].city}</option>
+            `);
+        } else {
+          $('#cities').append(`
+            <option value="${cities[i].city}">${cities[i].city}</option>
+            `);
+        }
+
       }
       return cities;
     },
@@ -71,7 +86,9 @@ let getPolution = function(city, state, country) {
 
 $(document).ready(function() {
   console.log(apiKey);
-  // let url = `http://api.airvisual.com/v2/city?city=${city}&state=${state}&country=${country}&key=7LRyPFW5Ei3JYTJin`;
+  let air = new Air();
+  air.getCountries();
+
 
   let countries = [];
   let states;
@@ -80,24 +97,33 @@ $(document).ready(function() {
   let state;
   let city;
 
-  $.ajax({
-    url: `http://api.airvisual.com/v2/countries?key=${apiKey}`,
-    type: 'GET',
-    data: {
-      format: 'json'
-    },
-    success: function(response) {
-      countries = response.data;
-      for(let i=0; i < countries.length; i++) {
-        $('#countries').append(`
-          <option value="${countries[i].country}">${countries[i].country}</option>
-          `);
-      }
-    },
-    error: function() {
-      $('#errors').text("There was an error processing your request. Please try again.");
-    }
-  });
+  // $.ajax({
+  //   url: `http://api.airvisual.com/v2/countries?key=${apiKey}`,
+  //   type: 'GET',
+  //   data: {
+  //     format: 'json'
+  //   },
+  //   success: function(response) {
+  //     countries = response.data;
+  //
+  //     for(let i=0; i < countries.length; i++) {
+  //
+  //       if(countries[i].country == "USA"){
+  //         $('#countries').append(`
+  //           <option value="${countries[i].country}" selected>${countries[i].country}</option>
+  //           `);
+  //       } else {
+  //         $('#countries').append(`
+  //           <option value="${countries[i].country}">${countries[i].country}</option>
+  //           `);
+  //       }
+  //
+  //     }
+  //   },
+  //   error: function() {
+  //     $('#errors').text("There was an error processing your request. Please try again.");
+  //   }
+  // });
 
 
   $('#queryAirData').submit(function(event){
