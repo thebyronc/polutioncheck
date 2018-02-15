@@ -1,0 +1,36 @@
+{
+  "name": "airqualityapi",
+  "version": "1.0.0",
+  "description": "Name: My new free api key Plan: community Status: ACTIVE Key: 7LRyPFW5Ei3JYTJin Created: Wed Feb 14 2018 13:10:55 GMT-0800 (PST) Expires in: 365 days",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^8.0.0",
+    "bower-files": "^4.0.0",
+    "browser-sync": "^2.23.6",
+    "browserify": "^15.2.0",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-jshint": "^2.1.0",
+    "gulp-uglify": "^3.0.0",
+    "jasmine": "^2.9.0",
+    "jasmine-core": "^2.99.0",
+    "jshint": "^2.9.5",
+    "karma": "^2.0.0",
+    "karma-browserify": "^5.1.3",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-cli": "^1.0.1",
+    "karma-jasmine": "^1.1.1",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-jquery": "^0.2.2",
+    "vinyl-source-stream": "^2.0.0",
+    "watchify": "^3.10.0"
+  }
+}
